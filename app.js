@@ -1,4 +1,39 @@
 let express = require('express');
 
+// create instance
 let app = express();
 
+// localhost:8080/addNo/88  : to add new number to database
+// localhost:8080/deleteNo/88   : to delete a number (first occurence)
+// localhost:8080/deleteById/123    : delete a number by its id
+// localhost:8080/listAll   : to get all the numbers and its id
+
+let db = [];
+
+app.get('/addNo/:number', function(req,res) {
+
+    let theId = getNewRandomId();
+    let obj = {
+        id : theId,
+        no : parseInt(req.params.number)        // convert it to integer
+    };
+    console.log(obj);
+    db.push(obj);
+    res.send("TQ");
+});
+
+
+app.get('/listAll', function(req,res) {
+    
+});
+
+function generateList() {
+
+}
+
+function getNewRandomId() {
+    let id = Math.round(Math.random()*1000);
+    return id;
+}
+
+app.listen(8080);
