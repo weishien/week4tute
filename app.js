@@ -24,7 +24,11 @@ app.get('/addNo/:number', function(req,res) {
 
 
 app.get('/listAll', function(req,res) {
-    
+    let st = '';
+    for (let i = 0; i < db.length; i++) {
+        st += (i) + ' - ' + db[i].id + ' | ' + db[i].no + '<br/>';
+    }
+    res.send(st);
 });
 
 function generateList() {
