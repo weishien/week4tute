@@ -31,13 +31,14 @@ app.get('/listAll', function(req,res) {
     res.send(st);
 });
 
+
 app.get('/deleteNo/:no', function(req,res) {
     let no = parseInt(req.params.no);
     let found = false;
     let index = 0;
     while (index<db.length && !found) {
         if (db[index].no === no) {
-            db = db.splice(index,1);
+            db.splice(index,1);
             found = true;
         } 
         else {
@@ -54,6 +55,7 @@ app.get('/deleteNo/:no', function(req,res) {
     }
     res.send(msg);
 })
+
 
 function getNewRandomId() {
     let id = Math.round(Math.random()*1000);
