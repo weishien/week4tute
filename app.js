@@ -31,9 +31,18 @@ app.get('/listAll', function(req,res) {
     res.send(st);
 });
 
-function generateList() {
-
-}
+app.get('/deleteItem/:no', function(req,res) {
+    let no = parseInt(req.params.no);
+    let index = 0;
+    while (index<db.length) {
+        if (db[index].no === no) {
+            db.splice(index,1);
+        } 
+        else {
+            index++;
+        }
+    }
+})
 
 function getNewRandomId() {
     let id = Math.round(Math.random()*1000);
