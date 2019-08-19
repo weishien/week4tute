@@ -31,17 +31,28 @@ app.get('/listAll', function(req,res) {
     res.send(st);
 });
 
-app.get('/deleteItem/:no', function(req,res) {
+app.get('/deleteNo/:no', function(req,res) {
     let no = parseInt(req.params.no);
+    let found = false;
     let index = 0;
-    while (index<db.length) {
+    while (index<db.length && !found) {
         if (db[index].no === no) {
-            db.splice(index,1);
+            db = db.splice(index,1);
+            found = true;
         } 
         else {
             index++;
         }
     }
+
+    let msg = '';
+    if (found) {
+        msg= 'Found';
+    }
+    else {
+        msg = 'Not found';
+    }
+    res.send(msg);
 })
 
 function getNewRandomId() {
